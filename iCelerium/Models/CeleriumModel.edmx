@@ -1,0 +1,1148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SMSServersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agents">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="DistrictID" Type="int" Nullable="false" />
+          <Property Name="ContituencyID" Type="int" Nullable="false" />
+          <Property Name="IsEnable" Type="bit" Nullable="false" />
+          <Property Name="PollingStationID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AuditRecords">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IPAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AreaAccessed" Type="varchar(max)" Nullable="false" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CollationEntries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ConstituencyID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PartyID" Type="int" Nullable="false" />
+          <Property Name="DateSend" Type="datetime" Nullable="false" />
+          <Property Name="NumberOfVote" Type="int" Nullable="false" />
+          <Property Name="PollingStationID" Type="int" />
+        </EntityType>
+        <EntityType Name="Constituencies">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ConstituencyName" Type="varchar(max)" Nullable="false" />
+          <Property Name="ConstituencyNo" Type="varchar(max)" Nullable="false" />
+          <Property Name="DistrictID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Districts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="DistrictName" Type="varchar(max)" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElectoralAreas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ElectoralAreaName" Type="varchar(max)" Nullable="false" />
+          <Property Name="Constituency" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parties">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Abrev" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PollingStations">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="PollingStationNo" Type="varchar(max)" Nullable="false" />
+          <Property Name="PollingStationName" Type="varchar(max)" Nullable="false" />
+          <Property Name="RegisteredVoters" Type="int" />
+          <Property Name="TransferedAway" Type="int" />
+          <Property Name="Transfered_into" Type="int" />
+          <Property Name="ElectoralAreaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="RegionName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Symbol" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EMSystems.dbo.vConstituencies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vConstituencies">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ConstituencyName" />
+            <PropertyRef Name="ConstituencyNo" />
+            <PropertyRef Name="DistrictID" />
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ConstituencyName" Type="varchar(max)" Nullable="false" />
+          <Property Name="ConstituencyNo" Type="varchar(max)" Nullable="false" />
+          <Property Name="DistrictID" Type="int" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Agents_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Agents" Type="Self.Agents" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Constituencies">
+          <End Role="Constituencies" Type="Self.Constituencies" Multiplicity="1" />
+          <End Role="Agents" Type="Self.Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Constituencies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="ContituencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Districts">
+          <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
+          <End Role="Agents" Type="Self.Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Districts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_PollingStations">
+          <End Role="PollingStations" Type="Self.PollingStations" Multiplicity="1" />
+          <End Role="Agents" Type="Self.Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PollingStations">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="PollingStationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Regions">
+          <End Role="Regions" Type="Self.Regions" Multiplicity="1" />
+          <End Role="Agents" Type="Self.Agents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Agents">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Constituencies_Districts">
+          <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
+          <End Role="Constituencies" Type="Self.Constituencies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Districts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Constituencies">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Districts_Regions">
+          <End Role="Regions" Type="Self.Regions" Multiplicity="1" />
+          <End Role="Districts" Type="Self.Districts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Districts">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElectoralAreas_Constituencies">
+          <End Role="Constituencies" Type="Self.Constituencies" Multiplicity="1" />
+          <End Role="ElectoralAreas" Type="Self.ElectoralAreas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Constituencies">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ElectoralAreas">
+              <PropertyRef Name="Constituency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollingStations_ElectoralAreas">
+          <End Role="ElectoralAreas" Type="Self.ElectoralAreas" Multiplicity="0..1" />
+          <End Role="PollingStations" Type="Self.PollingStations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectoralAreas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PollingStations">
+              <PropertyRef Name="ElectoralAreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spNumberberOfConstituency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spVoteAvailableRegion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spVotePartybar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spVotePartyRegionTransPie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RegionName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spVotePartyTransPie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spVotePerRegion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spVoteTransPie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="SMSServersModelStoreContainer">
+          <EntitySet Name="Agents" EntityType="Self.Agents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuditRecords" EntityType="Self.AuditRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CollationEntries" EntityType="Self.CollationEntries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Constituencies" EntityType="Self.Constituencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Districts" EntityType="Self.Districts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElectoralAreas" EntityType="Self.ElectoralAreas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parties" EntityType="Self.Parties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PollingStations" EntityType="Self.PollingStations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vConstituencies" EntityType="Self.vConstituencies" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vConstituencies].[ID] AS [ID], 
+    [vConstituencies].[ConstituencyName] AS [ConstituencyName], 
+    [vConstituencies].[ConstituencyNo] AS [ConstituencyNo], 
+    [vConstituencies].[DistrictID] AS [DistrictID], 
+    [vConstituencies].[RegionID] AS [RegionID]
+    FROM [dbo].[vConstituencies] AS [vConstituencies]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Agents_AspNetUsers" Association="Self.FK_Agents_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Constituencies" Association="Self.FK_Agents_Constituencies">
+            <End Role="Constituencies" EntitySet="Constituencies" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Districts" Association="Self.FK_Agents_Districts">
+            <End Role="Districts" EntitySet="Districts" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_PollingStations" Association="Self.FK_Agents_PollingStations">
+            <End Role="PollingStations" EntitySet="PollingStations" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Regions" Association="Self.FK_Agents_Regions">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="Agents" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Constituencies_Districts" Association="Self.FK_Constituencies_Districts">
+            <End Role="Districts" EntitySet="Districts" />
+            <End Role="Constituencies" EntitySet="Constituencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Districts_Regions" Association="Self.FK_Districts_Regions">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="Districts" EntitySet="Districts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElectoralAreas_Constituencies" Association="Self.FK_ElectoralAreas_Constituencies">
+            <End Role="Constituencies" EntitySet="Constituencies" />
+            <End Role="ElectoralAreas" EntitySet="ElectoralAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollingStations_ElectoralAreas" Association="Self.FK_PollingStations_ElectoralAreas">
+            <End Role="ElectoralAreas" EntitySet="ElectoralAreas" />
+            <End Role="PollingStations" EntitySet="PollingStations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SMSServersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SMSServersEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="spToBePosted" ReturnType="Collection(SMSServersModel.spToBePosted_Result)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spToBePostedUploaded" ReturnType="Collection(SMSServersModel.spToBePostedUploaded_Result)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spToBeValidated" ReturnType="Collection(SMSServersModel.spToBeValidated_Result)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spTransDay" ReturnType="Collection(SMSServersModel.spTransDay_Result)">
+          <Parameter Name="date1" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spTransDayColPay" ReturnType="Collection(SMSServersModel.spTransDayColPay_Result)">
+            <Parameter Name="date1" Mode="In" Type="String" />
+            <Parameter Name="key" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spTransPie" ReturnType="Collection(SMSServersModel.spTransPie_Result)">
+          <Parameter Name="date1" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdatePosted">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spVoteAvailableRegion" ReturnType="Collection(String)" />
+          <FunctionImport Name="spVotePartybar" ReturnType="Collection(SMSServersModel.spVotePartybar_Result)" />
+          <FunctionImport Name="spVotePartyTransPie" ReturnType="Collection(SMSServersModel.spVotePartyTransPie_Result)" />
+          <FunctionImport Name="spVotePerRegion" ReturnType="Collection(SMSServersModel.spVotePerRegion_Result)" />
+          <FunctionImport Name="spVoteTransPie" ReturnType="Collection(SMSServersModel.spVoteTransPie_Result)" />
+          <FunctionImport Name="toRealign" ReturnType="Collection(SMSServersModel.toRealign_Result)">
+            <Parameter Name="AgentId" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Validations" ReturnType="Collection(SMSServersModel.Validations_Result)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+            <Parameter Name="UserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spVotePartyRegionTransPie" ReturnType="Collection(SMSServersModel.spVotePartyRegionTransPie_Result)">
+          <Parameter Name="RegionName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Agents" EntityType="SMSServersModel.Agent" />
+          <EntitySet Name="AspNetRoles" EntityType="SMSServersModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="SMSServersModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="SMSServersModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="SMSServersModel.AspNetUser" />
+          <EntitySet Name="AuditRecords" EntityType="SMSServersModel.AuditRecord" />
+          <EntitySet Name="CollationEntries" EntityType="SMSServersModel.CollationEntry" />
+          <EntitySet Name="Constituencies" EntityType="SMSServersModel.Constituency" />
+          <EntitySet Name="Districts" EntityType="SMSServersModel.District" />
+          <EntitySet Name="ElectoralAreas" EntityType="SMSServersModel.ElectoralArea" />
+          <EntitySet Name="Parties" EntityType="SMSServersModel.Party" />
+          <EntitySet Name="PollingStations" EntityType="SMSServersModel.PollingStation" />
+          <EntitySet Name="Regions" EntityType="SMSServersModel.Region" />
+          <EntitySet Name="vConstituencies" EntityType="SMSServersModel.vConstituency" />
+          <AssociationSet Name="FK_Agents_AspNetUsers" Association="SMSServersModel.FK_Agents_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Agent" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Constituencies" Association="SMSServersModel.FK_Agents_Constituencies">
+            <End Role="Constituency" EntitySet="Constituencies" />
+            <End Role="Agent" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Districts" Association="SMSServersModel.FK_Agents_Districts">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Agent" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_PollingStations" Association="SMSServersModel.FK_Agents_PollingStations">
+            <End Role="PollingStation" EntitySet="PollingStations" />
+            <End Role="Agent" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agents_Regions" Association="SMSServersModel.FK_Agents_Regions">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Agent" EntitySet="Agents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="SMSServersModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="SMSServersModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Constituencies_Districts" Association="SMSServersModel.FK_Constituencies_Districts">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="Constituency" EntitySet="Constituencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElectoralAreas_Constituencies" Association="SMSServersModel.FK_ElectoralAreas_Constituencies">
+            <End Role="Constituency" EntitySet="Constituencies" />
+            <End Role="ElectoralArea" EntitySet="ElectoralAreas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Districts_Regions" Association="SMSServersModel.FK_Districts_Regions">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="District" EntitySet="Districts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollingStations_ElectoralAreas" Association="SMSServersModel.FK_PollingStations_ElectoralAreas">
+            <End Role="ElectoralArea" EntitySet="ElectoralAreas" />
+            <End Role="PollingStation" EntitySet="PollingStations" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="SMSServersModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="spNumberberOfConstituency" ReturnType="Collection(SMSServersModel.spNumberberOfConstituency_Result)" />
+        </EntityContainer>
+        <ComplexType Name="spToBePosted_Result">
+          <Property Type="String" Name="AgentId" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="AgentName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="NTrans" Nullable="true" />
+          <Property Type="Double" Name="SPaiement" Nullable="true" />
+          <Property Type="Double" Name="SCollet" Nullable="true" />
+          <Property Type="Double" Name="SNouveauClient" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spToBePostedUploaded_Result">
+          <Property Type="String" Name="AgentId" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="AgentName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="NTrans" Nullable="true" />
+          <Property Type="Double" Name="SPaiement" Nullable="true" />
+          <Property Type="Double" Name="SCollet" Nullable="true" />
+          <Property Type="Double" Name="SNouveauClient" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spToBeValidated_Result">
+          <Property Type="String" Name="AgentId" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="AgentName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="NTrans" Nullable="true" />
+          <Property Type="Double" Name="SPaiement" Nullable="true" />
+          <Property Type="Double" Name="SCollet" Nullable="true" />
+          <Property Type="Double" Name="SNouveauClient" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spTransDay_Result">
+          <Property Type="Int32" Name="Heure" Nullable="true" />
+          <Property Type="Double" Name="Total" Nullable="true" />
+          <Property Type="Double" Name="cTotal" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spTransDayColPay_Result">
+          <Property Type="Int32" Name="Heure" Nullable="true" />
+          <Property Type="Double" Name="Total" Nullable="true" />
+          <Property Type="Double" Name="cTotal" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spTransPie_Result">
+          <Property Type="String" Name="ZoneName" Nullable="true" MaxLength="150" />
+          <Property Type="Double" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spVotePartybar_Result">
+          <Property Type="String" Name="RegionName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Abrev" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="Total" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spVotePartyTransPie_Result">
+          <Property Type="String" Name="PartyName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Abrev" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="28" Scale="12" />
+        </ComplexType>
+        <ComplexType Name="spVotePerRegion_Result">
+          <Property Type="String" Name="RegionName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Number_of_constituency" Nullable="true" />
+          <Property Type="String" Name="PARTY" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="TOTAL" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spVoteTransPie_Result">
+          <Property Type="String" Name="RegionName" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="24" Scale="12" />
+        </ComplexType>
+        <ComplexType Name="toRealign_Result">
+          <Property Type="String" Name="AgentId" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="ClientId" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="Credit" Nullable="true" />
+          <Property Type="Double" Name="Debit" Nullable="true" />
+          <Property Type="Double" Name="SoldeOuverture" Nullable="true" />
+          <Property Type="Double" Name="SoldeFermeture" Nullable="true" />
+          <Property Type="Double" Name="Description" Nullable="true" />
+          <Property Type="Boolean" Name="Posted" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Validations_Result">
+          <Property Type="DateTime" Name="PostingStamp" Nullable="false" Precision="23" />
+          <Property Type="String" Name="FullName" Nullable="true" />
+          <Property Type="String" Name="AgentName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Numtrans" Nullable="false" />
+          <Property Type="Decimal" Name="SPaiments" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SCollectes" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SPayable" Nullable="false" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="spVotePartyRegionTransPie_Result">
+          <Property Type="String" Name="PartyName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Abrev" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="28" Scale="12" />
+          <Property Type="String" Name="RegionName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="DistrictID" Type="Int32" Nullable="false" />
+          <Property Name="ContituencyID" Type="Int32" Nullable="false" />
+          <Property Name="IsEnable" Type="Boolean" Nullable="false" />
+          <Property Name="PollingStationID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="SMSServersModel.FK_Agents_AspNetUsers" FromRole="Agent" ToRole="AspNetUser" />
+          <NavigationProperty Name="Constituency" Relationship="SMSServersModel.FK_Agents_Constituencies" FromRole="Agent" ToRole="Constituency" />
+          <NavigationProperty Name="District" Relationship="SMSServersModel.FK_Agents_Districts" FromRole="Agent" ToRole="District" />
+          <NavigationProperty Name="PollingStation" Relationship="SMSServersModel.FK_Agents_PollingStations" FromRole="Agent" ToRole="PollingStation" />
+          <NavigationProperty Name="Region" Relationship="SMSServersModel.FK_Agents_Regions" FromRole="Agent" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="SMSServersModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="SMSServersModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="SMSServersModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Agent" Relationship="SMSServersModel.FK_Agents_AspNetUsers" FromRole="AspNetUser" ToRole="Agent" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="SMSServersModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="SMSServersModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="SMSServersModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="AuditRecord">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AreaAccessed" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CollationEntry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConstituencyID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PartyID" Type="Int32" Nullable="false" />
+          <Property Name="DateSend" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NumberOfVote" Type="Int32" Nullable="false" />
+          <Property Name="PollingStationID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Constituency">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ConstituencyName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ConstituencyNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DistrictID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Agents" Relationship="SMSServersModel.FK_Agents_Constituencies" FromRole="Constituency" ToRole="Agent" />
+          <NavigationProperty Name="District" Relationship="SMSServersModel.FK_Constituencies_Districts" FromRole="Constituency" ToRole="District" />
+          <NavigationProperty Name="ElectoralAreas" Relationship="SMSServersModel.FK_ElectoralAreas_Constituencies" FromRole="Constituency" ToRole="ElectoralArea" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DistrictName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Agents" Relationship="SMSServersModel.FK_Agents_Districts" FromRole="District" ToRole="Agent" />
+          <NavigationProperty Name="Constituencies" Relationship="SMSServersModel.FK_Constituencies_Districts" FromRole="District" ToRole="Constituency" />
+          <NavigationProperty Name="Region" Relationship="SMSServersModel.FK_Districts_Regions" FromRole="District" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="ElectoralArea">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ElectoralAreaName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Constituency" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Constituency1" Relationship="SMSServersModel.FK_ElectoralAreas_Constituencies" FromRole="ElectoralArea" ToRole="Constituency" />
+          <NavigationProperty Name="PollingStations" Relationship="SMSServersModel.FK_PollingStations_ElectoralAreas" FromRole="ElectoralArea" ToRole="PollingStation" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Abrev" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PollingStation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PollingStationNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PollingStationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegisteredVoters" Type="Int32" />
+          <Property Name="TransferedAway" Type="Int32" />
+          <Property Name="Transfered_into" Type="Int32" />
+          <Property Name="ElectoralAreaID" Type="Int32" />
+          <NavigationProperty Name="Agents" Relationship="SMSServersModel.FK_Agents_PollingStations" FromRole="PollingStation" ToRole="Agent" />
+          <NavigationProperty Name="ElectoralArea" Relationship="SMSServersModel.FK_PollingStations_ElectoralAreas" FromRole="PollingStation" ToRole="ElectoralArea" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="RegionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Symbol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Agents" Relationship="SMSServersModel.FK_Agents_Regions" FromRole="Region" ToRole="Agent" />
+          <NavigationProperty Name="Districts" Relationship="SMSServersModel.FK_Districts_Regions" FromRole="Region" ToRole="District" />
+        </EntityType>
+        <EntityType Name="vConstituency">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ConstituencyName" />
+            <PropertyRef Name="ConstituencyNo" />
+            <PropertyRef Name="DistrictID" />
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ConstituencyName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ConstituencyNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DistrictID" Type="Int32" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Agents_AspNetUsers">
+          <End Type="SMSServersModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="SMSServersModel.Agent" Role="Agent" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Constituencies">
+          <End Type="SMSServersModel.Constituency" Role="Constituency" Multiplicity="1" />
+          <End Type="SMSServersModel.Agent" Role="Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Constituency">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="ContituencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Districts">
+          <End Type="SMSServersModel.District" Role="District" Multiplicity="1" />
+          <End Type="SMSServersModel.Agent" Role="Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_PollingStations">
+          <End Type="SMSServersModel.PollingStation" Role="PollingStation" Multiplicity="1" />
+          <End Type="SMSServersModel.Agent" Role="Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PollingStation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="PollingStationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agents_Regions">
+          <End Type="SMSServersModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="SMSServersModel.Agent" Role="Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Type="SMSServersModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SMSServersModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="SMSServersModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SMSServersModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Constituencies_Districts">
+          <End Type="SMSServersModel.District" Role="District" Multiplicity="1" />
+          <End Type="SMSServersModel.Constituency" Role="Constituency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Constituency">
+              <PropertyRef Name="DistrictID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElectoralAreas_Constituencies">
+          <End Type="SMSServersModel.Constituency" Role="Constituency" Multiplicity="1" />
+          <End Type="SMSServersModel.ElectoralArea" Role="ElectoralArea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Constituency">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ElectoralArea">
+              <PropertyRef Name="Constituency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Districts_Regions">
+          <End Type="SMSServersModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="SMSServersModel.District" Role="District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollingStations_ElectoralAreas">
+          <End Type="SMSServersModel.ElectoralArea" Role="ElectoralArea" Multiplicity="0..1" />
+          <End Type="SMSServersModel.PollingStation" Role="PollingStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ElectoralArea">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PollingStation">
+              <PropertyRef Name="ElectoralAreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="SMSServersModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="SMSServersModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="spNumberberOfConstituency_Result">
+          <Property Type="String" Name="RegionName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ConstituencyName" Nullable="true" />
+          <Property Type="String" Name="PollingStationName" Nullable="true" />
+          <Property Type="Int32" Name="RegisteredVoters" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SMSServersModelStoreContainer" CdmEntityContainer="SMSServersEntities">
+          <FunctionImportMapping FunctionImportName="spVoteAvailableRegion" FunctionName="SMSServersModel.Store.spVoteAvailableRegion" />
+          <FunctionImportMapping FunctionImportName="spVotePartybar" FunctionName="SMSServersModel.Store.spVotePartybar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SMSServersModel.spVotePartybar_Result">
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="Abrev" ColumnName="Abrev" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spVotePartyTransPie" FunctionName="SMSServersModel.Store.spVotePartyTransPie">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SMSServersModel.spVotePartyTransPie_Result">
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="Abrev" ColumnName="Abrev" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spVotePerRegion" FunctionName="SMSServersModel.Store.spVotePerRegion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SMSServersModel.spVotePerRegion_Result">
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="Number_of_constituency" ColumnName="Number of constituency" />
+                <ScalarProperty Name="PARTY" ColumnName="PARTY" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spVoteTransPie" FunctionName="SMSServersModel.Store.spVoteTransPie">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SMSServersModel.spVoteTransPie_Result">
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spVotePartyRegionTransPie" FunctionName="SMSServersModel.Store.spVotePartyRegionTransPie">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SMSServersModel.spVotePartyRegionTransPie_Result">
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="Abrev" ColumnName="Abrev" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="SMSServersModel.Agent">
+              <MappingFragment StoreEntitySet="Agents">
+                <ScalarProperty Name="PollingStationID" ColumnName="PollingStationID" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="ContituencyID" ColumnName="ContituencyID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="SMSServersModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="SMSServersModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="SMSServersModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="SMSServersModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuditRecords">
+            <EntityTypeMapping TypeName="SMSServersModel.AuditRecord">
+              <MappingFragment StoreEntitySet="AuditRecords">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="AreaAccessed" ColumnName="AreaAccessed" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CollationEntries">
+            <EntityTypeMapping TypeName="SMSServersModel.CollationEntry">
+              <MappingFragment StoreEntitySet="CollationEntries">
+                <ScalarProperty Name="PollingStationID" ColumnName="PollingStationID" />
+                <ScalarProperty Name="NumberOfVote" ColumnName="NumberOfVote" />
+                <ScalarProperty Name="DateSend" ColumnName="DateSend" />
+                <ScalarProperty Name="PartyID" ColumnName="PartyID" />
+                <ScalarProperty Name="ConstituencyID" ColumnName="ConstituencyID" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Constituencies">
+            <EntityTypeMapping TypeName="SMSServersModel.Constituency">
+              <MappingFragment StoreEntitySet="Constituencies">
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="ConstituencyNo" ColumnName="ConstituencyNo" />
+                <ScalarProperty Name="ConstituencyName" ColumnName="ConstituencyName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="SMSServersModel.District">
+              <MappingFragment StoreEntitySet="Districts">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElectoralAreas">
+            <EntityTypeMapping TypeName="SMSServersModel.ElectoralArea">
+              <MappingFragment StoreEntitySet="ElectoralAreas">
+                <ScalarProperty Name="Constituency" ColumnName="Constituency" />
+                <ScalarProperty Name="ElectoralAreaName" ColumnName="ElectoralAreaName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parties">
+            <EntityTypeMapping TypeName="SMSServersModel.Party">
+              <MappingFragment StoreEntitySet="Parties">
+                <ScalarProperty Name="Abrev" ColumnName="Abrev" />
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PollingStations">
+            <EntityTypeMapping TypeName="SMSServersModel.PollingStation">
+              <MappingFragment StoreEntitySet="PollingStations">
+                <ScalarProperty Name="ElectoralAreaID" ColumnName="ElectoralAreaID" />
+                <ScalarProperty Name="Transfered_into" ColumnName="Transfered_into" />
+                <ScalarProperty Name="TransferedAway" ColumnName="TransferedAway" />
+                <ScalarProperty Name="RegisteredVoters" ColumnName="RegisteredVoters" />
+                <ScalarProperty Name="PollingStationName" ColumnName="PollingStationName" />
+                <ScalarProperty Name="PollingStationNo" ColumnName="PollingStationNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="SMSServersModel.Region">
+              <MappingFragment StoreEntitySet="Regions">
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vConstituencies">
+            <EntityTypeMapping TypeName="SMSServersModel.vConstituency">
+              <MappingFragment StoreEntitySet="vConstituencies">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="ConstituencyNo" ColumnName="ConstituencyNo" />
+                <ScalarProperty Name="ConstituencyName" ColumnName="ConstituencyName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SMSServersModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="spNumberberOfConstituency" FunctionName="SMSServersModel.Store.spNumberberOfConstituency">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SMSServersModel.spNumberberOfConstituency_Result">
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="ConstituencyName" ColumnName="ConstituencyName" />
+                <ScalarProperty Name="PollingStationName" ColumnName="PollingStationName" />
+                <ScalarProperty Name="RegisteredVoters" ColumnName="RegisteredVoters" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "DonutChart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+
+}
+<h2>DonutChart</h2>
+<div class="row">
+    @(Model)
+</div>
+

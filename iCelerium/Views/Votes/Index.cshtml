@@ -1,0 +1,62 @@
+﻿@model List<iCelerium.Models.BodyClasses.CollationModelView>
+'@{
+    ViewBag.Title = "Vote collation overview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+   
+<div class="row">
+    <h3><i class="fa fa-user"></i>@ViewBag.Title</h3>
+    <hr />
+    <div><table class="table table-striped">
+    <thead style=" font-weight:bold">
+        <tr>
+            <td style="background-color:lightgray;">CONSTITUENCY</td>
+            <td style="background-color:#837D3C;">@Html.DisplayNameFor(model => model.FirstOrDefault().NDC)</td>
+            <td>@Html.DisplayNameFor(model => model.FirstOrDefault().NPP)</td>
+            <td>@Html.DisplayNameFor(model => model.FirstOrDefault().CPP)</td>
+            <td>@Html.DisplayNameFor(model => model.FirstOrDefault().PPP)</td>
+            <td>@Html.DisplayNameFor(model => model.FirstOrDefault().OTHERS)</td>
+            <td>@Html.DisplayNameFor(model => model.FirstOrDefault().REJECTED)</td>
+            <td>@Html.DisplayNameFor(model => model.FirstOrDefault().TOTAL)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td style="background-color:lightcoral; color:white;">@Html.DisplayFor(itemModel => item.ConstituencyID)</td>
+                <td style="background-color:#CFCCA3;">@Html.DisplayFor(itemModel => item.NDC)</td>
+                <td>@Html.DisplayFor(itemModel => item.NPP)</td>
+                <td>@Html.DisplayFor(itemModel => item.CPP)</td>
+                <td>@Html.DisplayFor(itemModel => item.PPP)</td>
+                <td>@Html.DisplayFor(itemModel => item.OTHERS)</td>
+                <td>@Html.DisplayFor(itemModel => item.REJECTED)</td>
+                <td>@Html.DisplayFor(itemModel => item.TOTAL)</td>
+            </tr>
+        }
+
+    </tbody>
+    @*<tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>*@
+</table></div>
+    
+    </div>
+<div class="row">
+    <div>
+       
+    </div>
+</div>
+
+

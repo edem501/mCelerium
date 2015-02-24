@@ -1,0 +1,4 @@
+﻿1>------ Build started: Project: iCelerium, Configuration: Debug Any CPU ------
+1>C:\VoteCollation\iCelerium\iCelerium\Controllers\AdminController.cs(22,41,22,55): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.
+1>  iCelerium -> C:\VoteCollation\iCelerium\iCelerium\bin\iCelerium.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
